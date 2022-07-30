@@ -5,10 +5,10 @@ app = FastAPI()
 
 @app.get("/recommendations")
 def getRecommendation(article):
-    recommended = ""
+    recommended = []
     for i , doc in enumerate(loaded_model.recommend(text = article,n = 5)):
         print(i+1)
-        recommended+=(" ".join(doc['text'].split()[:500])) + " "
+        recommended.append ( str(i+1)+"   "+" ".join(doc['text'].split()[:500]))
         
     return [{
         "recommended":recommended
